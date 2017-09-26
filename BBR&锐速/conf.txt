@@ -1,0 +1,29 @@
+1、BBR一键安装脚本
+	wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh
+	chmod +x bbr.sh
+	./bbr.sh
+
+2、检测是否安装成功
+	lsmod | grep bbr //返回值有 tcp_bbr 模块即说明bbr已启动。
+
+3、锐速安装
+	wget --no-check-certificate -qO /tmp/appex.sh "https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh" && bash /tmp/appex.sh 'install'
+
+	wget -N --no-check-certificate https://github.com/91yun/serverspeeder/raw/master/serverspeeder.sh && bash serverspeeder.sh
+
+4、BBR魔改版
+	wget --no-check-certificate -qO 'BBR.sh' 'https://moeclub.org/attachment/LinuxShell/BBR.sh' && chmod a+x BBR.sh && bash BBR.sh -f
+	wget --no-check-certificate -qO 'BBR_POWERED.sh' 'https://moeclub.org/attachment/LinuxShell/BBR_POWERED.sh' && chmod a+x BBR_POWERED.sh && bash BBR_POWERED.sh
+
+	wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/YankeeBBR/master/bbr.sh && bash bbr.sh install
+
+以上均只支持Debian8 / Ubuntu16 +
+
+5、Scalable-RE (Scalable-Reactive) 
+	export MOD=scalable-re
+	apt-get install make gcc-4.9 -y
+	wget -O ./tcp_$MOD.c https://gist.github.com/anonymous/c7ff1090fe2991b1f39f2fedf566dfc0/raw/3af99ec379aad9a6f2b32ef463a4bde9e97390db/tcp_scalable-re.c
+	echo "obj-m:=tcp_$MOD.o" > Makefile
+	make -C /lib/modules/$(uname -r)/build M=`pwd` modules CC=/usr/bin/gcc-4.9
+	insmod tcp_$MOD.ko min_target=22 max_tolerance=1
+	sysctl net.ipv4.tcp_congestion_control=$MOD

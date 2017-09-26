@@ -1,0 +1,23 @@
+ #apt-get install python-pip python-dev build-essential #安装必要的依赖
+pip install shadowsocks
+#要运行代理服务
+ssserver -p 3128 -k google -m aes-256-cfb --user nobody -d start
+#封装成脚本shadow.sh(./shadow.sh start运行代理服务， 使用./shadow.sh stop结束代理服务)
+
+#优化响应速度
+#更换加密算法
+ssserver -p 3128 -k google -m rc4-md5 --user nobody -d start
+#多个端口，多个帐号密码
+{
+    "server": "my_server_ip",
+    "port_password": {
+        "8381": "foobar1",
+        "8382": "foobar2",
+        "8383": "foobar3",
+        "8384": "foobar4"
+    },
+    "timeout": 300,
+    "method": "rc4-md5"
+}
+#启动ssserver -c /etc/ss_cfg.json -d start
+#停止ssserver -c /etc/ss_cfg.json -d stop

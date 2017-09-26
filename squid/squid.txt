@@ -1,0 +1,25 @@
+1、squid实现内网穿透
+    参考地址 http://git.oschina.net/doobo/fanqiang
+    squid.conf参考地址：http://git.oschina.net/doobo/fanqiang/raw/master/conf/squid.conf
+    pac.txt参考地址：http://git.oschina.net/doobo/fanqiang/raw/master/conf/pac.txt
+
+    #优化响应速度:默认情况下squid代理服务器会告诉对方网站我是代理服务器，有的服务器看到是代理服务器来访问就会拒绝服务
+    #3.0之前的版本，在squid.conf添加
+    header_access Via deny all
+    header_access X-Forwarded-For deny all
+
+    #3.0之后可以在/etc/squid/squid.conf添加
+    forwarded_for off
+    via off
+
+    #添加或修改代理验证
+    htpasswd -c /etc/squid/passwd root #加-c会初始化password文件，其他用户也没有了
+    htpasswd /etc/squid/passwd root #添加或修改代理验证账号，不需要重启squid服务
+
+    #squid常用命令
+    squid -z                #初始化缓存空间
+    squid -k parse          #检查配置文件
+    squid -s                #动squid在后台运行
+    squid -N -d1            #前台启动squid,ctrl + c，停止squid，并以后台运行的方式启动它
+    squid -k shutdown       #停止squid
+    squid -k reconfigure    #载入新的配置文件

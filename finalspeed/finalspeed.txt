@@ -1,0 +1,15 @@
+a、方案一(OpenVZ的虚拟机)----finalspeed：
+    apt-get install default-jre #安装Java环境
+    wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/finalspeed/master/install_fs.sh && bash install_fs.sh
+    bash install_fs.sh uninstall #卸载方法
+    /etc/init.d/finalspeed start #启动
+    /etc/init.d/finalspeed stop #停止命令
+    /etc/init.d/finalspeed status #状态命令（查看日志）
+    /fs/ #安装路径
+    /fs/server.log #日志路径
+
+    客户端使用方法：
+    1、UDP连接，如果不行，可以试试TCP，一般OpenVZ只支持UDP连接
+    2、设置端口号，本地随意，服务器为SS或SSR的端口
+    3、开启SS或SSR客户端，服务器IP地址为：127.0.0.1，端口为：上面设置的本地端口
+    4、其它加密设置原样不动即可，点击连接，既本地加速
