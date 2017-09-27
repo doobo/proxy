@@ -1,0 +1,17 @@
+1、服务端安装脚本
+	rm -f install_tcpspeed.sh ; wget http://www.tcpspeed.com/tcpspeed/install_tcpspeed.sh ; chmod +x install_tcpspeed.sh ; ./install_tcpspeed.sh 2>&1 | tee install.log
+
+	#执行一键安装会自动完成更新
+
+2、常用配置
+	sh /xs/check_activation.sh #检查激活状态
+	sh /xs/dactivate.sh 激活码 #激活命令
+	sh /xs/start.sh #启动
+	sh /xs/restart.sh #重新启动
+	sh /xs/uninstall.sh #卸载
+
+3、密码端口修改
+	mkdir -p /xs/cnf/ ; echo 密码 >> /xs/cnf/password ;sh /xs/restart.sh #设置密码,默认无密码,可添加多个密码
+	rm -rf /xs/cnf/password ; sh /xs/restart.sh #取消密码
+	mkdir -p /xs/cnf/ ; echo 端口号 > /xs/cnf/listen_port ; sh /xs/restart.sh #修改监听端口
+	
