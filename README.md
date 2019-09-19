@@ -2,6 +2,7 @@
 ## ShadowsocksR 里面有使用方法
 
 ## 使用前记得卸载监控软件
+``` bash
 su root
 service aegis stop 
 chkconfig --del aegis
@@ -11,3 +12,4 @@ chmod +x uninstall.sh
 pkill aliyun-service
 rm -fr /etc/init.d/agentwatch /usr/sbin/aliyun-service
 rm -rf /usr/local/aegis*
+```
