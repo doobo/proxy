@@ -1,16 +1,42 @@
-wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
-chmod +x shadowsocksR.sh
-./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
+1、单用户安装SSR
+	wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh
+	chmod +x shadowsocksR.sh
+	./shadowsocksR.sh 2>&1 | tee shadowsocksR.log
 
-卸载方法
-./shadowsocksR.sh uninstall
+	卸载方法
+	./shadowsocksR.sh uninstall
 
-使用命令
-/etc/init.d/shadowsocks start #启动
-/etc/init.d/shadowsocks stop #停止
-/etc/init.d/shadowsocks restart #重启
-/etc/init.d/shadowsocks status #状态
+	使用命令
+	/etc/init.d/shadowsocks start #启动
+	/etc/init.d/shadowsocks stop #停止
+	/etc/init.d/shadowsocks restart #重启
+	/etc/init.d/shadowsocks status #状态
 
-/etc/shadowsocks.json #配置文件路径：
-/var/log/shadowsocks.log #日志文件路径
-/usr/local/shadowsocks #代码安装目录
+	/etc/shadowsocks.json #配置文件路径：
+	/var/log/shadowsocks.log #日志文件路径
+	/usr/local/shadowsocks #代码安装目录
+
+2、多用户可配置安装SSR
+	wget -N --no-check-certificate https://softs.fun/Bash/ssr.sh && chmod +x ssr.sh && bash ssr.sh
+
+	#备用下载地址
+	wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh && chmod +x ssr.sh && bash ssr.sh
+
+	#功能
+	支持 限制 端口限速
+	支持 限制 端口设备数
+	支持 显示 当前连接IP
+	支持 显示 SS/SSR连接+二维码
+	支持 切换管理 单/多端口
+	支持 一键安装 BBR
+	支持 一键安装 锐速
+	支持 一键安装 LotServer
+	支持 一键封禁 垃圾邮件(SMAP)/BT/PT
+
+3、端口转发，编写etc下的shadowsocks.json配置文件
+	"redirect":["*:3125#ipav.vip:8989"]#多个以逗号分开
+	#多个端口分开
+	"port_password":{
+        "3125":"ipav.vip",
+        "8989":"ipav.vip"
+    }
